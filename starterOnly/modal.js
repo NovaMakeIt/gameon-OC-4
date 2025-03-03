@@ -13,6 +13,7 @@ const modalBtn = document.querySelectorAll(".modal-btn");
 const formData = document.querySelectorAll(".formData");
 const closeBtn = document.querySelector(".close");
 const form = document.querySelector("form");
+const modalBody = document.querySelector(".modal-body");
 
 // Éléments du formulaire
 const firstName = document.getElementById("first");
@@ -34,6 +35,23 @@ const errorMessages = {
   terms: "Vous devez accepter les conditions d'utilisation"
 };
 
+// Création de l'élément de confirmation
+const confirmationMessage = document.createElement('div');
+confirmationMessage.className = 'confirmation-message';
+confirmationMessage.style.display = 'none';
+confirmationMessage.innerHTML = `
+  <div class="modal-confirmation">
+    <h2>Merci pour votre inscription</h2>
+    <button class="btn-submit btn-close">Fermer</button>
+  </div>
+`;
+
+// Ajouter le message de confirmation à la modal-body (après le formulaire)
+modalBody.appendChild(confirmationMessage);
+
+// Référence au bouton de fermeture du message de confirmation
+const btnClose = confirmationMessage.querySelector(".btn-close");
+
 // launch modal event
 modalBtn.forEach((btn) => btn.addEventListener("click", launchModal));
 
@@ -44,10 +62,16 @@ function launchModal() {
 
 // Close modal event
 closeBtn.addEventListener("click", closeModal);
+btnClose.addEventListener("click", closeModal);
 
 // Close modal form
 function closeModal() {
   modalbg.style.display = "none";
+  // Réinitialiser la vue pour une future ouverture
+  form.style.display = "block";
+  confirmationMessage.style.display = "none";
+  // Réinitialiser le formulaire
+  form.reset();
 }
 
 // Afficher un message d'erreur
@@ -181,8 +205,18 @@ terms.addEventListener("change", validateTerms);
 
 // Attacher la fonction de validation au formulaire
 form.addEventListener("submit", function(event) {
-  // Si la validation échoue, empêcher la soumission du formulaire
-  if (!validate()) {
-    event.preventDefault();
+  // Empêcher la soumission du formulaire dans tous les cas
+  event.preventDefault();
+  
+  // Si la validation réussit, afficher le message de confirmation
+  if (validate()) {
+    form.style.display = "none";
+    confirmationMessage.style.display = "block";
+    console.log('Prénom :', firstName.value)
+    console.log('Nom :', lastName.value)
+    console.log('E-mail :', email.value)
+    console.log('Date de naissance :', birthdate.value)
+    console.log('Nombre tournois :', quantity.value)
+    console.log('Ou ? :', locationInputs.value)
   }
 });
