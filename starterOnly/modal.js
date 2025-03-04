@@ -41,8 +41,12 @@ confirmationMessage.className = 'confirmation-message';
 confirmationMessage.style.display = 'none';
 confirmationMessage.innerHTML = `
   <div class="modal-confirmation">
-    <h2>Merci pour votre inscription</h2>
-    <button class="btn-submit btn-close">Fermer</button>
+    <div class="confirmation-content">
+      <h2>Merci pour votre inscription</h2>
+    </div>
+    <div class="confirmation-footer">
+      <button class="btn-submit btn-close">Fermer</button>
+    </div>
   </div>
 `;
 
@@ -217,6 +221,8 @@ form.addEventListener("submit", function(event) {
     console.log('E-mail :', email.value)
     console.log('Date de naissance :', birthdate.value)
     console.log('Nombre tournois :', quantity.value)
-    console.log('Ou ? :', locationInputs.value)
+     // Trouver la localisation sélectionnée
+    const selectedLocation = Array.from(locationInputs).find(input => input.checked);
+    console.log('Où ?', selectedLocation ? selectedLocation.value : 'Aucune sélection')
   }
 });
