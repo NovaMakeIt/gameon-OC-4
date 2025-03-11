@@ -214,14 +214,18 @@ input {
   color: #e54858;
   display: block;
   margin-top: 7px;
-  margin-bottom: 7px;
+  margin-bottom: 0px;
   text-align: left;
-  line-height: 0.3;
+  line-height: 143%;
   opacity: 0;
   transition: 0.3s;
+  height: 0;
+  overflow: hidden;
 }
 .formData[data-error-visible="true"]::after {
   opacity: 1;
+  height: auto;
+  margin-bottom: 7px;
 }
 .formData[data-error-visible="true"] .text-control {
   border: 2px solid #e54858;
@@ -566,4 +570,52 @@ footer {
 
 .btn-close {
   margin-top: 1rem;
+}
+
+/* Modification de la modal bground pour le responsive */
+@media screen and (max-width: 414px) {
+  .topnav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    background-color: white;
+    z-index: 2;
+    margin: 0;
+    padding: 3.5%;
+  }
+
+  main {
+    margin-top: 80px;
+  }
+
+  .bground {
+    position: fixed;
+    top: 80px;
+    height: calc(100% - 80px);
+    z-index: 1;
+  }
+
+  .content {
+    margin: 0 auto;
+    height: 100%;
+    max-height: 100%;
+    overflow-y: auto;
+    border-radius: 0;
+  }
+
+  .modal-body {
+    padding: 10px 5%;
+    height: 100%;
+    overflow-y: auto;
+  }
+
+  /* Ajustements pour la confirmation */
+  .confirmation-message {
+    max-height: 100%;
+  }
+
+  .confirmation-content {
+    padding: 2rem 1rem;
+  }
 }
