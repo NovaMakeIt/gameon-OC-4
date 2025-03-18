@@ -97,7 +97,6 @@ img {
   .topnav a.icon {
     float: right;
     display: block;
-    margin-top: -15px;
   }
 } 
 
@@ -442,7 +441,7 @@ input[data-error]::after {
 .hero-headline {
   font-size: 6rem;
   font-weight: normal;
-  white-space: nowrap;
+  /*white-space: nowrap;*/
 }
 .hero-text {
   width: 146%;
@@ -503,7 +502,7 @@ footer {
     white-space: normal;
   }
   .hero-text {
-    width: unset;
+    width: 100%;
     font-size: 1.5rem;
   }
   .hero-img img {
@@ -518,6 +517,31 @@ footer {
   .copyrights {
     margin-top: 50px;
     text-align: center;
+  }
+}
+
+@media screen and (max-width: 540px) {
+  .hero-headline {
+    font-size: 40px !important;
+    line-height: 100%;
+  }
+  .hero-text {
+    font-size: 13px;
+    line-height: 100%;
+  }
+
+  .hero-content {
+    min-width: unset;
+    padding: 15px;
+  }
+}
+
+@media screen and (max-width: 414px) {
+  .header-logo img {
+    width: 103px;
+    height: auto;
+    margin-top: 20px;
+    margin-left: 30px;
   }
 }
 
